@@ -1,6 +1,5 @@
 from django.core.validators import MinValueValidator
 from django.db import models
-
 from users.models import User
 
 
@@ -108,7 +107,7 @@ class IngredientRecipe(models.Model):
 
     class Meta:
         verbose_name = 'Cостав рецепта'
-        verbose_name_plural = 'Состав рецепта'
+        verbose_name_plural = 'Составы рецептов'
         constraints = [
             models.UniqueConstraint(
                 fields=['recipe', 'ingredient'],
@@ -124,18 +123,22 @@ class ShoppingCart(models.Model):
         User,
         related_name='shopping_cart',
         on_delete=models.CASCADE,
+        verbose_name='Пользователь',
     )
     recipe = models.ForeignKey(
         Recipe,
         related_name='shopping_cart',
         on_delete=models.CASCADE,
+        verbose_name='Рецепт в корзине',
     )
 
     class Meta:
         unique_together = ('user', 'recipe')
+        verbose_name = 'Список покупок'
+        verbose_name_plural = 'Списки покупок'
 
     def __str__(self):
-        return f'ShoppingCartObj {self.user} - {self.recipe}'
+        return f'Покупка {self.user} - {self.recipe}'
 
 
 class Favorite(models.Model):
@@ -143,16 +146,20 @@ class Favorite(models.Model):
     user = models.ForeignKey(
         User,
         related_name='favorite',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        verbose_name='Пользователь',
     )
     recipe = models.ForeignKey(
         Recipe,
         related_name='favorite',
         on_delete=models.CASCADE,
+        verbose_name='Рецепт в избранном'
     )
 
     class Meta:
         unique_together = ('user', 'recipe')
+        verbose_name = 'Избранный рецепт'
+        verbose_name_plural = 'Избранные рецепты'
 
     def __str__(self):
-        return f'Favorite Obj {self.user} - {self.recipe}'
+        return f'{self.user} избравший {self.recipe}'
