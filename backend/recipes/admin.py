@@ -8,12 +8,6 @@ admin.site.register(ShoppingCart)
 
 
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = (
-        'email',
-        'username',
-        'first_name',
-        'last_name'
-    )
     search_fields = ('name', 'author')
     filter_vertical = ('tags',)
 

@@ -15,6 +15,10 @@ class Ingredient(models.Model):
         verbose_name='Единица измерения',
     )
 
+    class Meta:
+        verbose_name = 'Ингридиент'
+        verbose_name_plural = 'Ингридиенты'
+
     def __str__(self):
         return self.name
 
@@ -28,7 +32,7 @@ class Tag(models.Model):
     )
 
     class Meta:
-        verbose_name = "Тег"
+        verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
 
     def __str__(self):
