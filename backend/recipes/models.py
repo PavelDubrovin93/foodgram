@@ -89,6 +89,9 @@ class Recipe(models.Model):
                 fields=['name', 'author'],
                 name='unique_recipe')]
 
+    def __str__(self):
+        return self.name
+
 
 class IngredientRecipe(models.Model):
 
