@@ -149,3 +149,7 @@ DJOSER = {
         'user_delete': ['rest_framework.permissions.IsAuthenticated'],
     },
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://kittykittykitty.hopto.org',
+]
