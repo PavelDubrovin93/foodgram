@@ -40,8 +40,8 @@ class Subscription(models.Model):
 
     class Meta:
         unique_together = ('subscriber', 'subscribed_to')
-        verbose_name = 'Избранный рецепт'
-        verbose_name_plural = 'Избранные рецепты'
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписки'
 
     def __str__(self):
         return f'{self.user} подписался на {self.recipe}'
