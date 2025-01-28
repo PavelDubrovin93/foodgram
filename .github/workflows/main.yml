@@ -97,7 +97,7 @@ jobs:
     needs: 
       - build_and_push_to_docker_hub
       - build_frontend_and_push_to_docker_hub
-      - build_gateway_and_push_to_docker_hub
+      - copy_nginx
     if: github.ref_name == 'main'
     steps:
     - name: Checkout repo
