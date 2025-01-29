@@ -156,11 +156,11 @@ class RecipeSerializer(serializers.ModelSerializer):
     def add_tags_ingredients(self, ingredients, tags, model):
         bulk_list = []
         for ingredient in ingredients:
-            bulk_list.append(
+            bulk_list.append(IngredientRecipe(
                 recipe=model,
                 ingredient_id=ingredient['id'],
                 amount=ingredient['amount']
-            )
+            ))
         IngredientRecipe.objects.bulk_create(bulk_list)
         model.tags.set(tags)
 
