@@ -129,7 +129,7 @@ class RecipeSerializer(serializers.ModelSerializer):
             if ingredient in ingredients_set:
                 raise ValidationError(
                     {'ingredients': 'Ингредиенты повторяются!'})
-            ingredients_set.update(ingredient)
+            ingredients_set.add(ingredient)
         return value
 
     def validate_tags(self, value):
@@ -142,7 +142,7 @@ class RecipeSerializer(serializers.ModelSerializer):
             if tag in tags_set:
                 raise ValidationError(
                     {'tags': 'Теги повторяются!'})
-            tags_set.update(tag)
+            tags_set.add(tag)
         return value
 
     def to_representation(self, instance):
