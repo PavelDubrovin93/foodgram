@@ -25,7 +25,7 @@ class Ingredient(models.Model):
     class Meta:
         verbose_name = 'Ингридиент'
         verbose_name_plural = 'Ингридиенты'
-        ordering = [-id]
+        ordering = ['-id']
 
     def __str__(self):
         return self.name
@@ -42,7 +42,7 @@ class Tag(models.Model):
     class Meta:
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
-        ordering = [-id]
+        ordering = ['-id']
 
     def __str__(self):
         return self.name
@@ -97,6 +97,12 @@ class Recipe(models.Model):
         verbose_name='Дата публикации',
         auto_now_add=True)
 
+    def author_info(self):
+        return f'{self.author.first_name} {self.author.last_name}'
+
+    def tags_names(self):
+        return ', '.join(tag.name for tag in self.tags.all())
+
     class Meta:
         ordering = ['-id']
         default_related_name = 'recipe'
@@ -146,7 +152,7 @@ class IngredientRecipe(models.Model):
             models.UniqueConstraint(
                 fields=['recipe', 'ingredient'],
                 name='unique_ingredients')]
-        ordering = [-id]
+        ordering = ['-id']
 
     def __str__(self):
         return f'{self.ingredient} {self.amount}'
@@ -171,7 +177,7 @@ class ShoppingCart(models.Model):
         unique_together = ('user', 'recipe')
         verbose_name = 'Список покупок'
         verbose_name_plural = 'Списки покупок'
-        ordering = [-id]
+        ordering = ['-id']
 
     def __str__(self):
         return f'Покупка {self.user} - {self.recipe}'
@@ -196,7 +202,7 @@ class Favorite(models.Model):
         unique_together = ('user', 'recipe')
         verbose_name = 'Избранный рецепт'
         verbose_name_plural = 'Избранные рецепты'
-        ordering = [-id]
+        ordering = ['-id']
 
     def __str__(self):
         return f'{self.user} избравший {self.recipe}'

@@ -11,11 +11,11 @@ admin.site.register(ShoppingCart)
 class RecipeAdmin(admin.ModelAdmin):
     list_display = (
         'name',
-        'author',
-        'tags',
+        'author_info',
+        'tags_names',
         'favorite_count'
     )
-    search_fields = ('name', 'author')
+    search_fields = ('name', 'author_info')
     filter_horizontal = ('tags',)
 
     def get_queryset(self, request):
