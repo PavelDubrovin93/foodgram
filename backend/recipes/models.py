@@ -1,7 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
-from users.models import User
+from users.models import MyUser
 
 MAX_CHARFIELD_LENGHT = 150
 MIN_COOKING_TIME = 1
@@ -51,7 +51,7 @@ class Tag(models.Model):
 class Recipe(models.Model):
 
     author = models.ForeignKey(
-        User,
+        MyUser,
         on_delete=models.CASCADE,
         verbose_name='Автор рецепта',
         related_name='recipes'
@@ -161,7 +161,7 @@ class IngredientRecipe(models.Model):
 class ShoppingCart(models.Model):
 
     user = models.ForeignKey(
-        User,
+        MyUser,
         related_name='shopping_cart',
         on_delete=models.CASCADE,
         verbose_name='Пользователь',
@@ -186,7 +186,7 @@ class ShoppingCart(models.Model):
 class Favorite(models.Model):
 
     user = models.ForeignKey(
-        User,
+        MyUser,
         related_name='favorite',
         on_delete=models.CASCADE,
         verbose_name='Пользователь',

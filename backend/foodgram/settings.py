@@ -69,7 +69,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.MyUser'
 
 
 # Database

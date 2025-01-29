@@ -4,7 +4,7 @@ from django.db import models
 MAX_CHARFIELD_LENGHT = 150
 
 
-class User(AbstractUser):
+class MyUser(AbstractUser):
     avatar = models.ImageField(
         'Аватар',
         null=True,
@@ -36,13 +36,13 @@ class User(AbstractUser):
 
 class Subscription(models.Model):
     subscriber = models.ForeignKey(
-        User,
+        MyUser,
         on_delete=models.CASCADE,
         related_name='subscriptions',
         verbose_name='Кто подписался'
     )
     subscribed_to = models.ForeignKey(
-        User,
+        MyUser,
         on_delete=models.CASCADE,
         related_name='subscribers',
         verbose_name='На кого подписались'

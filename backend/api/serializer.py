@@ -7,7 +7,7 @@ from djoser.serializers import UserSerializer
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from rest_framework.relations import SlugRelatedField
-from users.models import Subscription, User
+from users.models import Subscription, MyUser
 
 from .pagination import MyPageNumberPaginator
 from recipes.models import (Favorite, Ingredient, IngredientRecipe, Recipe,
@@ -222,7 +222,7 @@ class SubscriptionSerializer(serializers.ModelSerializer):
     )
     subscribed_to = SlugRelatedField(
         slug_field='email',
-        queryset=User.objects.all()
+        queryset=MyUser.objects.all()
     )
 
     class Meta:
@@ -249,7 +249,7 @@ class AvatarSerializer(serializers.ModelSerializer):
     avatar = Base64ImageField(required=False, allow_null=True)
 
     class Meta:
-        model = User
+        model = MyUser
         fields = ('avatar',)
 
 

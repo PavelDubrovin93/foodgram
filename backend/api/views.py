@@ -12,7 +12,7 @@ from rest_framework.response import Response
 
 from recipes.models import (Favorite, Ingredient, IngredientRecipe, Recipe,
                             ShoppingCart, Tag)
-from users.models import Subscription, User
+from users.models import Subscription, MyUser
 from .filters import IngredientSearchFilter, RecipeFilter
 from .pagination import MyPageNumberPaginator
 from .permissions import OwnerOrReadOnly
@@ -212,7 +212,7 @@ class MyUserViewSet(UserViewSet):
             permission_classes=[IsAuthenticated]
             )
     def subscribe_change(self, request, id=None):
-        subscribed_to = get_object_or_404(User, pk=id)
+        subscribed_to = get_object_or_404(MyUser, pk=id)
         if request.method == 'POST':
             if subscribed_to == request.user:
                 return Response(
