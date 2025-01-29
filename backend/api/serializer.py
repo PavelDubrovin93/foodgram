@@ -158,7 +158,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         for ingredient in ingredients:
             bulk_list.append(IngredientRecipe(
                 recipe=model,
-                ingredient_id=ingredient['id'],
+                ingredient=ingredient['id'],
                 amount=ingredient['amount']
             ))
         IngredientRecipe.objects.bulk_create(bulk_list)
